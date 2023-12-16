@@ -9,9 +9,9 @@ const dataFormate = () => {
 };
 
 class loggerService {
-  route: any;
+  route;
   logger: any;
-  constructor(route) {
+  constructor(route: any) {
     this.route = route;
     const logger = winston.createLogger({
       level: 'info',
