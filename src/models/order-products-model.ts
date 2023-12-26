@@ -19,4 +19,4 @@ export const OrderItem = sequelize.define(
 );
 
 OrderItem.removeAttribute('id');
-module.exports = OrderItem;
+

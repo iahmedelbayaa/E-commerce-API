@@ -21,14 +21,10 @@ app.use(express.json());
 
 
 
-sequelize
-  .sync()
-  .then(() => {
-    association.create();
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error('Failed to sync database:', error);
-  });
+sequelize.sync();
+association.create();
+
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
