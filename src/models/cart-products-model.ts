@@ -1,11 +1,11 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import sequelize from '../config/sequelize-config';
 
-export const UserProduct = sequelize.define(
-  'user_product',
+export const CartItem = sequelize.define(
+  'cart_item',
   {
-    price: {
-      type: DataTypes.DOUBLE,
+    quantity: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
@@ -18,3 +18,4 @@ export const UserProduct = sequelize.define(
   }
 );
 
+CartItem.removeAttribute('id');
