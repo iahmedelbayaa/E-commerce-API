@@ -1,4 +1,4 @@
-import {tables} from '../util/tables';
+import { tables } from '../util/tables';
 
 export const create = () => {
   tables.user.belongsTo(tables.role, {
