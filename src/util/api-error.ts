@@ -20,7 +20,11 @@ class ApiError extends Error {
 static from(error: any) {
     error.status = error.status || StatusCode.INTERNAL_SERVER_ERROR;
     return new ResponseError(error.message, error.status);
-}
+  }
+  
+  static forbidden(message = 'Forbidden') {
+    return new ResponseError(message, StatusCode.FORBIDDEN.toString());
+  }
 }
 
 export default ApiError;

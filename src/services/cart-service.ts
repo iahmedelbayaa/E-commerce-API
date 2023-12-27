@@ -38,48 +38,13 @@ export const getByUserId = async (userId: any) => {
   }
 };
 
-// export const getCartDetails = async (cart: any) => {
-//   try {
-//     const cartItems = await cartItemService.searchAll({ cartId: cart.id });
-//     let price = 0;
 
-//     const details = await Promise.all(
-//       cartItems.map(async (cartItem: any) => {
-//         let product = productService.getById(cartItem.productId);
-//         let seller = await userService.getById(cartItem.userId);
-//         let customer = await getUser(cartItem.cartId) ?? null;
-//         let userProduct = await userProductService.searchAll({
-//             userId: cartItem.userId,
-//             productId: cartItem.productId,
-//         });
 
-//         [product, seller, customer, userProduct] = await Promise.all([
-//             product,
-//             seller,
-//             customer,
-//             userProduct,
-//         ]);
 
-//         price += userProduct.price * cartItem.quantity;
 
-//         return {
-//           customerName: `${customer.firstName} ${customer.lastName}`,
-//           sellerName: `${seller.firstName} ${seller.lastName}`,
-//           productName: product.name,
-//           productPrice: userProduct.price,
-//           quantity: cartItem.quantity,
-//           totalPrice: userProduct.price * cartItem.quantity,
-//         };
-//       })
-//     );
 
-//     const info = { price: price, details: details };
-//     return info;
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
-//save
+
+
 export const save = async (cart: any) => {
   try {
     const newCart = await Cart.create(cart);

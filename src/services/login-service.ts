@@ -23,7 +23,6 @@ export const login = async (user:any) => {
     const refreshToken = await jwt.generateRefreshToken(email);
 
     return {
-      user: storedUser,
       accessToken: accessToken,
       refreshToken: refreshToken,
     };

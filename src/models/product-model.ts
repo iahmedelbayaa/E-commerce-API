@@ -1,7 +1,13 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { Sequelize, DataTypes ,Model} from 'sequelize';
 import sequelize from '../config/sequelize-config';
+interface ProductAttributes {
+  id: number;
+  name: string;
+}
 
-export const Product = sequelize.define(
+interface ProductModel extends Model<ProductAttributes>, ProductAttributes { }
+
+export const Product = sequelize.define<ProductModel>(
   'product',
   {
     id: {
