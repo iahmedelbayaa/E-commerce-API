@@ -54,3 +54,24 @@ export const save = async (product: any) => {
     throw new Error('cant save product ');
   }
 };
+
+//update
+export const update = async (product: any) => {
+  try {
+    const storedProduct = await Product.update(product, { where: { id: product.id } });
+    return storedProduct;
+  } catch (error) {
+    throw new Error('cant update product ');
+  }
+};
+
+//delete
+
+export const deleteProduct = async (id: any) => {
+  try {
+    const storedProduct = await Product.destroy({ where: { id: id } });
+    return storedProduct;
+  } catch (error) {
+    throw new Error('cant delete product ');
+  }
+};
