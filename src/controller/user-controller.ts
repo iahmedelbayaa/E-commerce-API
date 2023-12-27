@@ -57,7 +57,7 @@ export const getRole = async (req: Request, res: Response) => {
 export const save = async (req: Request, res: Response) => {
   try {
     const user = await User.create(req.body);
-    res.status(StatusCode.CREATED).json(user);
+    res.status(StatusCode.CREATED).json({ message: 'saved successfully' });
   } catch (error) {
     console.error(error);
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
@@ -69,7 +69,7 @@ export const save = async (req: Request, res: Response) => {
 export const update = async (req: Request, res: Response) => {
   try {
     const user = await userService.update(req.params.id);
-    res.status(StatusCode.OK).json(user);
+    res.status(StatusCode.OK).json({message : 'Updating successfully'});
   } catch (error) {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
   }
@@ -79,7 +79,7 @@ export const update = async (req: Request, res: Response) => {
 export const remove = async (req: Request, res: Response) => {
   try {
     const user = await userService.remove(req.params.id);
-    res.status(StatusCode.OK).json(user);
+    res.status(StatusCode.OK).json({ message: 'Deleted successfully' });
   } catch (error) {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
   }
