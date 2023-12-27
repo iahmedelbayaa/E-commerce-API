@@ -1,7 +1,18 @@
-import { Sequelize , DataTypes} from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/sequelize-config';
 
-export const User = sequelize.define(
+// Define the UserAttributes interface
+interface UserAttributes {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string; 
+}
+interface UserModel extends Model<UserAttributes>, UserAttributes {}
+
+// Define the 'user' Sequelize model
+export const User = sequelize.define<UserModel>(
   'user',
   {
     id: {
@@ -35,6 +46,3 @@ export const User = sequelize.define(
     underscored: true,
   }
 );
-
-
-

@@ -53,14 +53,14 @@ export const getRole = async (id: any) => {
   }
 };
 
-// export const save = async ( user : any) => {
-//   try {
-//     const storedUser = await User.create(user);
-//     return storedUser;
-//   } catch (error) {
-//     throw new Error('cant save user ');
-//   }
-// };
+export const save = async ( user : any) => {
+  try {
+    const storedUser = await User.create(user);
+    return storedUser;
+  } catch (error) {
+    throw new Error('cant save user ');
+  }
+};
 
 export const update = async (user: any) => {
   try {

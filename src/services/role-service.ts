@@ -1,4 +1,5 @@
 import { tables } from '../util/tables';
+import ApiError from '../util/api-error';
 
 const Role = tables.role;
 const User = tables.user;
@@ -8,7 +9,7 @@ export const getAll = async () => {
     const roles = await Role.findAll();
     return roles;
   } catch (error) {
-    throw new Error('cant get Roles ');
+    throw ApiError.from(error);
   }
 };
 
@@ -17,7 +18,7 @@ export const searchOne = async (searchAllCriteria: any) => {
     const roles = await Role.findOne({ where: { ...searchAllCriteria } });
     return roles;
   } catch (error) {
-    throw new Error('cant find role ');
+    throw ApiError.from(error);
   }
 };
 
@@ -26,9 +27,27 @@ export const getById = async (id: any) => {
     const role = await Role.findByPk(id);
     return role;
   } catch (error) {
-    throw new Error('cant find role By id');
+    throw ApiError.from(error);
   }
 };
+// //getUsers
+// export const getUsers = async (name: any) => {
+//   try {
+//     const role = await Role.findOne({
+//       where: { name: name },
+//       include: [User],
+//       raw: false,
+//     });
+//     if (!role) {
+//       return [];
+//     }
+
+//     const users = role.users;
+//     return users;
+//   } catch (error) {
+//     throw ApiError.from(error);
+//   }
+// };
 
 export const save = async (role: any) => {
   try {

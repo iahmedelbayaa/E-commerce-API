@@ -1,7 +1,18 @@
-import { Sequelize, DataTypes } from 'sequelize';
+// Import the Sequelize model and the sequelize instance
+import { Sequelize, DataTypes, Model } from 'sequelize';
 import sequelize from '../config/sequelize-config';
 
-export const Role = sequelize.define(
+// Define the RoleAttributes interface
+interface RoleAttributes {
+  id: number;
+  name: string;
+}
+
+// Define the RoleModel interface
+interface RoleModel extends Model<RoleAttributes>, RoleAttributes {}
+
+// Define the 'role' Sequelize model
+export const Role = sequelize.define<RoleModel>(
   'role',
   {
     id: {
