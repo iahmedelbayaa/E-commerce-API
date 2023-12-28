@@ -13,7 +13,7 @@ export const getAll = async () => {
 };
 
 //searchAll
-export const searchAll = async (searchAllCriteria: any) => {
+export const searchAll = async (searchAllCriteria: string[]) => {
   try {
     const userProducts = await UserProduct.findAll({ where: { ...searchAllCriteria } });
     return userProducts;
@@ -23,18 +23,17 @@ export const searchAll = async (searchAllCriteria: any) => {
 };
 
 //getProductById
-export const getProductById = async (id: any) => {
+export const getById = async (id: number) => {
   try {
     const userProduct = await UserProduct.findAll({ where: { userId: id } });
     if (!userProduct) {
       return null;
     }
     return userProduct;
-
   } catch (error) {
     throw new Error('cant get product ');
   }
-}
+};
 
 //save
 export const save = async (userProduct: any) => {
@@ -48,7 +47,7 @@ export const save = async (userProduct: any) => {
 
 //update
 
-export const update = async (userProduct: any) => {
+export const update = async (id: number , userProduct: any) => {
   try {
     const storedUserProduct = await UserProduct.update(userProduct, {
       where: { id: userProduct.id },
