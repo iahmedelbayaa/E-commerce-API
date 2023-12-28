@@ -11,8 +11,8 @@ export const getAll = async () => {
   }
 };
 
-//searchAll
-export const searchAll = async (searchAllCriteria: any) => {
+
+export const searchAll = async (searchAllCriteria: string[]) => {
   try {
     const cartItems = await CartItem.findAll({ where: { ...searchAllCriteria } });
     return cartItems;
@@ -21,8 +21,8 @@ export const searchAll = async (searchAllCriteria: any) => {
   }
 };
 
-//searchOne
-export const searchOne = async (searchOneCriteria: any) => {
+
+export const searchOne = async (searchOneCriteria: string[]) => {
   try {
     const cartItem = await CartItem.findOne({ where: { ...searchOneCriteria } });
     return cartItem;
@@ -31,7 +31,6 @@ export const searchOne = async (searchOneCriteria: any) => {
   }
 };
 
-//save
 export const save = async (cartItem: any) => {
   try {
     const storedCartItem = await CartItem.create(cartItem);
@@ -41,7 +40,6 @@ export const save = async (cartItem: any) => {
   }
 };
 
-//update
 
 export const update = async (cartItem: any) => {
   try {
@@ -54,9 +52,9 @@ export const update = async (cartItem: any) => {
   }
 };
 
-//delete
 
-export const deleteCartItem = async (id: any) => {
+
+export const deleteCartItem = async (id: number) => {
   try {
     const storedCartItem = await CartItem.destroy({
       where: { id },
