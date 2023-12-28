@@ -8,7 +8,7 @@ const Order = tables.order;
 const User = tables.user;
 
 //getByUserId
-export const getByUserId = async (userId: any) => {
+export const getByUserId = async (userId: string) => {
   try {
     const order = await Order.findAll({ where: { userId } });
     return order;
@@ -18,7 +18,7 @@ export const getByUserId = async (userId: any) => {
 };
 
 //getById
-export const getById = async (id: any) => {
+export const getById = async (id: string) => {
   try {
     const order = await Order.findByPk(id);
     return order;
@@ -28,7 +28,7 @@ export const getById = async (id: any) => {
 };
 
 //getUser
-export const getUser = async (id: any) => {
+export const getUser = async (id: string) => {
   try {
     const order = await Order.findByPk(id, { include: [User], raw: false });
     if (!order) {
@@ -41,7 +41,7 @@ export const getUser = async (id: any) => {
 };
 
 //searchOne
-export const searchOne = async (searchOneCriteria: any) => {
+export const searchOne = async (searchOneCriteria: string[]) => {
   try {
     const order = await Order.findOne({ where: { ...searchOneCriteria } });
     return order;
@@ -51,45 +51,26 @@ export const searchOne = async (searchOneCriteria: any) => {
 };
 
 //getOrderInfo
-// export const getOrderInfo = async (order: any) => {
-//   try {
-//     const orderItems = await orderItemService.searchAll({ orderId: order.id });
-//     let price = 0;
-
-//     const details = await Promise.all(
-//       orderItems.map(async (orderItem: any) => {
-//         let product = productService.getById(orderItem.productId);
-//         let seller = await userService.getById(orderItem.userId);
-//         let customer = await getUser(orderItem.orderId) ?? null;
-//         let userProduct = await userProductService.searchAll({
-//           userId: orderItem.userId,
-//           productId: orderItem.productId,
-//         });
-
-//         [product, seller, customer, userProduct] = await Promise.all([
-//           product,
-//           seller,
-//           customer,
-//           userProduct,
-//         ]);
-
-//         price += orderItem.quantity * product.price;
-
-//         return {
-//           product,
-//           seller,
-//           customer,
-//           quantity: orderItem.quantity,
-//           userProduct,
-//         };
-//       })
-//     );
-
-//     return { details, price };
-//   } catch (error) {
-//     throw new Error('cant get order info');
-//   }
-// };
+export const getOrderInfo = async (id: string) => {
+  try {
+    const order = await Order.findByPk(id, {
+      include: [
+        {
+          model: tables.orderItem,
+          include: [
+            {
+              model: tables.product,
+              include: [tables.userProduct],
+            },
+          ],
+        },
+      ],
+    });
+    return order;
+  } catch (error) {
+    throw new Error('cant get order info ');
+  }
+};
 
 //save
 export const save = async (order: any) => {

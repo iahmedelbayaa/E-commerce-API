@@ -38,11 +38,26 @@ export const getByUserId = async (userId: any) => {
   }
 };
 
-
-
-
-
-
+export const getCartInfo = async (id: any) => {
+  try {
+    const cart = await Cart.findByPk(id, {
+      include: [
+        {
+          model: tables.cartItem,
+          include: [
+            {
+              model: tables.product,
+              include: [tables.userProduct],
+            },
+          ],
+        },
+      ],
+    });
+    return cart;
+  } catch (error) {
+    throw ApiError.from(error);
+  }
+};
 
 
 export const save = async (cart: any) => {
