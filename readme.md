@@ -4,7 +4,7 @@ Welcome to the Online shopping App! This application is a simple online bookstor
 
 ## Table of Contents
 
-- [Bookstore App](#bookstore-app)
+- [ Online Shopping App ](#online-shopping-app)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
