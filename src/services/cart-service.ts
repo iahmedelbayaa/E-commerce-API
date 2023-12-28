@@ -1,14 +1,10 @@
 import { tables } from '../util/tables';
-import * as cartItemService from './cart-item-service';
-import * as productService from './product-service';
-import * as userService from './user-service';
-import * as userProductService from './user-product-service';
 import ApiError from '../util/api-error';
 
 const Cart = tables.cart;
 const User = tables.user;
 
-export const getById = async (id: any) => {
+export const getById = async (id: number) => {
   try {
     const cart = await Cart.findByPk(id);
     return cart;
@@ -17,7 +13,7 @@ export const getById = async (id: any) => {
   }
 };
 
-export const getUser = async (id: any) => {
+export const getUser = async (id: number) => {
   try {
     const cart = await Cart.findByPk(id, { include: [User], raw: false });
     if (!cart) {
@@ -29,7 +25,7 @@ export const getUser = async (id: any) => {
   }
 };
 
-export const getByUserId = async (userId: any) => {
+export const getByUserId = async (userId: number) => {
   try {
     const cart = await Cart.findOne({ where: { userId } });
     return cart;
@@ -38,7 +34,7 @@ export const getByUserId = async (userId: any) => {
   }
 };
 
-export const getCartInfo = async (id: any) => {
+export const getCartInfo = async (id: number) => {
   try {
     const cart = await Cart.findByPk(id, {
       include: [
@@ -69,7 +65,7 @@ export const save = async (cart: any) => {
   }
 };
 
-//clear
+
 export const clear = async (cart: any) => {
   try {
     const newCart = await Cart.destroy(cart);
