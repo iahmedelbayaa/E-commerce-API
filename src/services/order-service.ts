@@ -8,7 +8,7 @@ const Order = tables.order;
 const User = tables.user;
 
 //getByUserId
-export const getByUserId = async (userId: string) => {
+export const getByUserId = async (userId: number) => {
   try {
     const order = await Order.findAll({ where: { userId } });
     return order;
@@ -18,7 +18,7 @@ export const getByUserId = async (userId: string) => {
 };
 
 //getById
-export const getById = async (id: string) => {
+export const getById = async (id: number) => {
   try {
     const order = await Order.findByPk(id);
     return order;
@@ -28,7 +28,7 @@ export const getById = async (id: string) => {
 };
 
 //getUser
-export const getUser = async (id: string) => {
+export const getUser = async (id: number) => {
   try {
     const order = await Order.findByPk(id, { include: [User], raw: false });
     if (!order) {
@@ -51,7 +51,7 @@ export const searchOne = async (searchOneCriteria: string[]) => {
 };
 
 //getOrderInfo
-export const getOrderInfo = async (id: string) => {
+export const getOrderInfo = async (id: number) => {
   try {
     const order = await Order.findByPk(id, {
       include: [
