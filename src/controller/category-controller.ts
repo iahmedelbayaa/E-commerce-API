@@ -16,7 +16,15 @@ export const getAll = async (req: Request, res: Response) => {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
   }
 };
-
+//searchOne
+export const searchOne = async (req: Request, res: Response) => {
+  try {
+    const users = await categoryService.searchOne(req.body);
+    res.status(StatusCode.OK).json(users);
+  } catch (error) {
+    res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
+  }
+};
 export const getById = async (req: Request, res: Response) => {
   try {
     const user = await categoryService.getById(req.params.id);

@@ -44,6 +44,16 @@ export const searchAll = async (searchAllCriteria: any) => {
   }
 };
 
+//searchOne
+export const searchOne = async (searchOneCriteria: any) => {
+  try {
+    const product = await Product.findOne({ where: { ...searchOneCriteria } });
+    return product;
+  } catch (error) {
+    throw new Error('cant find product ');
+  }
+};
+
 
 //save
 export const save = async (product: any) => {
