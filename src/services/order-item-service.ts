@@ -3,7 +3,7 @@ import { tables } from '../util/tables';
 const OrderItem = tables.orderItem;
 
 //searchAll
-export const searchAll = async (searchAllCriteria: any) => {
+export const searchAll = async (searchAllCriteria: string[]) => {
   try {
     const orderItems = await OrderItem.findAll({ where: { ...searchAllCriteria } });
     return orderItems;
@@ -13,9 +13,11 @@ export const searchAll = async (searchAllCriteria: any) => {
 };
 
 //searchOne
-export const searchOne = async (searchOneCriteria: any) => {
+export const searchOne = async (searchOneCriteria: string[]) => {
   try {
-    const orderItem = await OrderItem.findOne({ where: { ...searchOneCriteria } });
+    const orderItem = await OrderItem.findOne({
+      where: { ...searchOneCriteria },
+    });
     return orderItem;
   } catch (error) {
     throw new Error('cant find orderItem ');
