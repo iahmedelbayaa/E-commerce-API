@@ -3,7 +3,7 @@ const router = express.Router();
 import * as categoryController from '../controller/category-controller';
 import {verifyToken} from '../middleware/authentication';
 import { authorizeByRole } from '../middleware/authorization';
-import  {categorySchema}  from '../validations/categorySchema';
+import  {categorySchema}  from '../validations/category-schema';
 import validator from '../middleware/validator';
 import {Roles} from '../util/roles';
 

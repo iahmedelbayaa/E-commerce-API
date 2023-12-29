@@ -44,6 +44,15 @@ export const getCategory = async (id: number) => {
         throw new Error('cant get category product ');
     }
 }
+//searchAll
+export const searchAll = async (searchAllCriteria: string[]) => {
+  try {
+    const products = await Product.findAll({ where: { ...searchAllCriteria } });
+    return products;
+  } catch (error) {
+    throw new Error('cant find product ');
+  }
+};
 
 //save
 export const save = async (product: any) => {

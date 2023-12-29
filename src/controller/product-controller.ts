@@ -50,7 +50,15 @@ export const remove = (req: Request, res: Response, next: NextFunction) => {
     return next(error);
   }
 };
-
+//searchAll
+export const searchAll = (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const product = productService.searchAll(req.body);
+    res.status(StatusCode.OK).json(product);
+  } catch (error) {
+    return next(error);
+  }
+};
 export const getCategoryInfo = (
   req: Request,
   res: Response,
