@@ -11,12 +11,20 @@ import validator from '../middleware/validator';
 router.use(verifyToken);
 router.use(authorizeByRole([Roles.CUSTOMER]));
 
-router.post('/', validator(cartItemSchema), cartItemController.save);
+router.post(
+  '/cart-product/save',
+  validator(cartItemSchema),
+  cartItemController.save
+);
 
-router.put('/', validator(cartItemSchema), cartItemController.update);
+router.put(
+  '/cart-product/update',
+  validator(cartItemSchema),
+  cartItemController.update
+);
 
 router.delete(
-  '/',
+  '/cart-product/delete',
   validator(cartItemDeletionSchema),
   cartItemController.deleteCartItem
 );

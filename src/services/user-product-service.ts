@@ -11,7 +11,15 @@ export const getAll = async () => {
     throw new Error('cant get all userProduct ');
   }
 };
-
+//getProducts
+export const getProducts = async () => {
+  try {
+    const userProducts = await UserProduct.findAll();
+    return userProducts;
+  } catch (error) {
+    throw new Error('cant get all userProduct ');
+  }
+};
 //searchAll
 export const searchAll = async (searchAllCriteria: string[]) => {
   try {

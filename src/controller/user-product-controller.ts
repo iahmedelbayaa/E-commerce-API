@@ -21,6 +21,15 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
     return next(error);
   }
 };
+//getProducts
+export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const products = await userProductService.getProducts();
+    res.status(StatusCode.OK).json(products);
+  } catch (error) {
+    return next(error);
+  }
+};
 
 export const create = async (req: Request, res: Response, next: NextFunction) => {
   try {
