@@ -11,4 +11,4 @@ router.use(authorizeByRole([Roles.CUSTOMER]));
 router.get("/info", cartController.getCartInfo);
 router.delete("/clear", cartController.clear);
 
-module.exports = router;
+export default router;

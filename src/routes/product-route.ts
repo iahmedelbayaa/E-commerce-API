@@ -47,3 +47,5 @@ router.delete(
   authorizeByRole([Roles.ADMIN]),
   productController.remove
 );
+
+export default router;
