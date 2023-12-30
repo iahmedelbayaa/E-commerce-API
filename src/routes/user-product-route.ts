@@ -3,7 +3,7 @@ const router = express.Router();
 import * as userProductController from '../controller/user-product-controller';
 import { verifyToken } from '../middleware/authentication';
 import { authorizeByRole } from '../middleware/authorization';
-const { userProductSchema } = require('../validations/user-product-schema');
+import { userProductSchema } from '../validations/user-product-schema';
 import validator from '../middleware/validator';
 import {Roles} from '../util/roles';
 
