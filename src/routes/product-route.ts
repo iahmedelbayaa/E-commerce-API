@@ -1,7 +1,7 @@
 import express from 'express';
 import * as productController from '../controller/product-controller';
 import { verifyToken } from '../middleware/authentication';
-const {authorizeByRole} = require('../middlewares/authorization');
+import { authorizeByRole } from '../middleware/authorization';
 import { productSchema } from '../validations/product-schema';
 import { productUpdateSchema } from '../validations/product-update-schema';
 import validator from '../middleware/validator';
