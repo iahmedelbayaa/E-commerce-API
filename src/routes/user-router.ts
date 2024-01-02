@@ -13,5 +13,6 @@ router.get('/user/:id', authorizeByRole(Roles.ALL), userCtrl.getById);
 router.get('/user/:id/roles', authorizeByRole(Roles.ADMIN), userCtrl.getRole);
 router.put('/update/:id', authorizeByRole(Roles.ALL), userCtrl.update);
 router.delete('/delete/:id', authorizeByRole([Roles.ADMIN]), userCtrl.remove);
+router.post('/user/save' , userCtrl.save)
 
 export default router;

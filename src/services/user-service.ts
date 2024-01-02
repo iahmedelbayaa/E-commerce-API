@@ -1,4 +1,5 @@
 import { tables } from '../util/tables';
+import ApiError from '../util/api-error';
 
 
 const Role = tables.role;
@@ -9,7 +10,7 @@ export const getAll = async () => {
     const users = await User.findAll();
     return users;
   } catch (error) {
-    throw new Error('cant get all user ');
+    throw ApiError.from(error);
   }
 };
 
@@ -18,7 +19,7 @@ export const getById = async (id: any) => {
     const user = await User.findByPk(id);
     return user;
   } catch (error) {
-    throw new Error('cant find user By id');
+    throw ApiError.from(error);
   }
 };
 
@@ -27,7 +28,7 @@ export const getByEmail = async (email: any) => {
     const user = await User.findOne({ where: { email: email } });
     return user;
   } catch (error) {
-    throw new Error('cant find user by email ');
+    throw ApiError.from(error);
   }
 };
 
@@ -36,7 +37,7 @@ export const searchAll = async (searchAllCriteria: any) => {
     const users = await User.findAll({ where: { ...searchAllCriteria } });
     return users;
   } catch (error) {
-    throw new Error('cant find users ');
+    throw ApiError.from(error);
   }
 };
 
@@ -49,7 +50,7 @@ export const getRole = async (id: any) => {
 
      return user;
   } catch (error) {
-    throw new Error('cant get role user ');
+    throw ApiError.from(error);
   }
 };
 
@@ -58,7 +59,8 @@ export const save = async ( user : any) => {
     const storedUser = await User.create(user);
     return storedUser;
   } catch (error) {
-    throw new Error('cant save user ');
+    console.error('Error saving user:', error);
+    throw ApiError.from(error);
   }
 };
 
@@ -67,7 +69,7 @@ export const update = async (user: any) => {
     const storedUser = await User.update(user, { where: { id: user.id } });
     return storedUser;
   } catch (error) {
-    throw new Error('cant update user ');
+    throw ApiError.from(error);
   }
 };
 
@@ -76,6 +78,6 @@ export const remove = async (id: any) => {
     const storedUser = await User.destroy({ where: { id: id } });
     return storedUser;
   } catch (error) {
-    throw new Error('cant remove user ');
+    throw ApiError.from(error);
   }
 };

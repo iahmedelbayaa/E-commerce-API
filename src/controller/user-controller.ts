@@ -2,10 +2,7 @@
 import { Request, Response } from 'express';
 import * as userService from '../services/user-service';
 import { StatusCode } from '../util/status-code';
-import { tables } from '../util/tables';
 
-const Role = tables.role;
-const User = tables.user;
 
 export const getAll = async (req: Request, res: Response) => {
   try {
@@ -56,7 +53,7 @@ export const getRole = async (req: Request, res: Response) => {
 
 export const save = async (req: Request, res: Response) => {
   try {
-    const user = await User.create(req.body);
+    await userService.save(req.body);
     res.status(StatusCode.CREATED).json({ message: 'saved successfully' });
   } catch (error) {
     console.error(error);
