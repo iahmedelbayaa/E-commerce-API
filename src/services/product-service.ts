@@ -1,5 +1,6 @@
 import { tables } from '../util/tables';
-import * as categoryService from './category-service'
+import * as categoryService from './category-service';
+import ApiError from '../util/api-error';
 
 const Product = tables.product;
 const Category = tables.category;
@@ -9,7 +10,7 @@ export const getAll = async () => {
     const products = await Product.findAll();
     return products;
   } catch (error) {
-    throw new Error('cant get all product ');
+    throw ApiError.from(error);
   }
 };
 
@@ -18,39 +19,42 @@ export const getById = async (id: number) => {
     const product = await Product.findByPk(id);
     return product;
   } catch (error) {
-    throw new Error('cant find product By id');
+    throw ApiError.from(error);
   }
 };
 
-//searchOne 
+//searchOne
 export const searchOne = async (searchAllCriteria: string[]) => {
-    try {
-      const products = await Product.findOne({ where: { ...searchAllCriteria } });
-      return products;
-    } catch (error) {
-      throw new Error('cant find product ');
-    }
-  };
+  try {
+    const products = await Product.findOne({ where: { ...searchAllCriteria } });
+    return products;
+  } catch (error) {
+    throw ApiError.from(error);
+  }
+};
 
 export const getCategory = async (id: number) => {
-    try {
-        const product = await Product.findByPk(id, { include: [Category], raw: false });
-         if (!product) {
-         return null;
-         }
-    
-         return product;
-    } catch (error) {
-        throw new Error('cant get category product ');
+  try {
+    const product = await Product.findByPk(id, {
+      include: [Category],
+      raw: false,
+    });
+    if (!product) {
+      return null;
     }
-}
+
+    return product;
+  } catch (error) {
+    throw ApiError.from(error);
+  }
+};
 //searchAll
 export const searchAll = async (searchAllCriteria: string[]) => {
   try {
     const products = await Product.findAll({ where: { ...searchAllCriteria } });
     return products;
   } catch (error) {
-    throw new Error('cant find product ');
+    throw ApiError.from(error);
   }
 };
 
@@ -67,7 +71,7 @@ export const save = async (product: any) => {
     const storedProduct = await Product.create(product);
     return storedProduct;
   } catch (error) {
-    throw new Error('cant save product ');
+    throw ApiError.from(error);
   }
 };
 
@@ -77,7 +81,7 @@ export const update = async (id: number, product: any) => {
     const storedProduct = await Product.update(product, { where: { id: id } });
     return storedProduct;
   } catch (error) {
-    throw new Error('cant update product ');
+    throw ApiError.from(error);
   }
 };
 
@@ -88,6 +92,6 @@ export const remove = async (id: number) => {
     const storedProduct = await Product.destroy({ where: { id: id } });
     return storedProduct;
   } catch (error) {
-    throw new Error('cant delete product ');
+    throw ApiError.from(error);
   }
 };
