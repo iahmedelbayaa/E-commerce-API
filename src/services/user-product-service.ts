@@ -1,6 +1,6 @@
 import * as productService from './product-service';
 import { tables } from '../util/tables';
-
+import ApiError from '../util/api-error';
 const UserProduct = tables.userProduct;
 
 export const getAll = async () => {
@@ -8,7 +8,7 @@ export const getAll = async () => {
     const userProducts = await UserProduct.findAll();
     return userProducts;
   } catch (error) {
-    throw new Error('cant get all userProduct ');
+    throw ApiError.from(error);
   }
 };
 //getProducts
@@ -17,16 +17,18 @@ export const getProducts = async () => {
     const userProducts = await UserProduct.findAll();
     return userProducts;
   } catch (error) {
-    throw new Error('cant get all userProduct ');
+    throw ApiError.from(error);
   }
 };
 //searchAll
 export const searchAll = async (searchAllCriteria: string[]) => {
   try {
-    const userProducts = await UserProduct.findAll({ where: { ...searchAllCriteria } });
+    const userProducts = await UserProduct.findAll({
+      where: { ...searchAllCriteria },
+    });
     return userProducts;
   } catch (error) {
-    throw new Error('cant find userProducts ');
+    throw ApiError.from(error);
   }
 };
 
@@ -39,7 +41,7 @@ export const getById = async (id: number) => {
     }
     return userProduct;
   } catch (error) {
-    throw new Error('cant get product ');
+    throw ApiError.from(error);
   }
 };
 
@@ -49,20 +51,20 @@ export const save = async (userProduct: any) => {
     const storedUserProduct = await UserProduct.create(userProduct);
     return storedUserProduct;
   } catch (error) {
-    throw new Error('cant save userProduct ');
+    throw ApiError.from(error);
   }
 };
 
 //update
 
-export const update = async (id: number , userProduct: any) => {
+export const update = async (id: number, userProduct: any) => {
   try {
     const storedUserProduct = await UserProduct.update(userProduct, {
       where: { id: userProduct.id },
     });
     return storedUserProduct;
   } catch (error) {
-    throw new Error('cant update userProduct ');
+    throw ApiError.from(error);
   }
 };
 
@@ -75,7 +77,6 @@ export const deleteUserProduct = async (id: any) => {
     });
     return storedUserProduct;
   } catch (error) {
-    throw new Error('cant delete userProduct ');
+    throw ApiError.from(error);
   }
 };
-
