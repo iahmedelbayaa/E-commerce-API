@@ -1,8 +1,5 @@
 import { tables } from '../util/tables';
-import * as orderItemService from './order-item-service';
-import * as productService from './product-service';
-import * as userService from './user-service';
-import * as userProductService from './user-product-service';
+import ApiError from '../util/api-error';
 
 const Order = tables.order;
 const User = tables.user;
@@ -13,7 +10,7 @@ export const getByUserId = async (userId: number) => {
     const order = await Order.findAll({ where: { userId } });
     return order;
   } catch (error) {
-    throw new Error('cant find order By userId');
+    throw ApiError.from(error);
   }
 };
 
@@ -23,7 +20,7 @@ export const getById = async (id: number) => {
     const order = await Order.findByPk(id);
     return order;
   } catch (error) {
-    throw new Error('cant find order By id');
+    throw ApiError.from(error);
   }
 };
 
@@ -36,7 +33,7 @@ export const getUser = async (id: number) => {
     }
     return order;
   } catch (error) {
-    throw new Error('cant get user order ');
+    throw ApiError.from(error);
   }
 };
 
@@ -46,7 +43,7 @@ export const searchOne = async (searchOneCriteria: string[]) => {
     const order = await Order.findOne({ where: { ...searchOneCriteria } });
     return order;
   } catch (error) {
-    throw new Error('cant find order ');
+    throw ApiError.from(error);
   }
 };
 
@@ -68,7 +65,7 @@ export const getOrderInfo = async (id: number) => {
     });
     return order;
   } catch (error) {
-    throw new Error('cant get order info ');
+    throw ApiError.from(error);
   }
 };
 
@@ -78,6 +75,6 @@ export const save = async (order: any) => {
     const storedOrder = await Order.create(order);
     return storedOrder;
   } catch (error) {
-    throw new Error('cant save order ');
+    throw ApiError.from(error);
   }
 };
