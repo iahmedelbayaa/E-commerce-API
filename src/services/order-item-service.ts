@@ -1,4 +1,5 @@
 import { tables } from '../util/tables';
+import ApiError from '../util/api-error';
 
 const OrderItem = tables.orderItem;
 
@@ -8,7 +9,7 @@ export const searchAll = async (searchAllCriteria: string[]) => {
     const orderItems = await OrderItem.findAll({ where: { ...searchAllCriteria } });
     return orderItems;
   } catch (error) {
-    throw new Error('cant find orderItems ');
+    throw ApiError.from(error);
   }
 };
 
@@ -20,7 +21,7 @@ export const searchOne = async (searchOneCriteria: string[]) => {
     });
     return orderItem;
   } catch (error) {
-    throw new Error('cant find orderItem ');
+    throw ApiError.from(error);
   }
 };
 
@@ -31,6 +32,6 @@ export const save = async (orderItem: any) => {
     const storedOrderItem = await OrderItem.create(orderItem);
     return storedOrderItem;
   } catch (error) {
-    throw new Error('cant save orderItem ');
+    throw ApiError.from(error);
   }
 };
