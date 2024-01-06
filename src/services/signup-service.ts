@@ -6,7 +6,6 @@ import bcrypt from 'bcrypt';
 import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
 
-const Role = tables.role;
 const User = tables.user;
 
 export const signup = async (user: any) => {

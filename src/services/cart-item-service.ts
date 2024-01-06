@@ -1,4 +1,5 @@
 import { tables } from '../util/tables';
+import ApiError from '../util/api-error';
 
 const CartItem = tables.cartItem;
 
@@ -7,7 +8,7 @@ export const getAll = async () => {
     const cartItems = await CartItem.findAll();
     return cartItems;
   } catch (error) {
-    throw new Error('cant get all cartItem ');
+    throw ApiError.from(error);
   }
 };
 
@@ -17,7 +18,7 @@ export const searchAll = async (searchAllCriteria: string[]) => {
     const cartItems = await CartItem.findAll({ where: { ...searchAllCriteria } });
     return cartItems;
   } catch (error) {
-    throw new Error('cant find cartItems ');
+    throw ApiError.from(error);
   }
 };
 
@@ -27,7 +28,7 @@ export const searchOne = async (searchOneCriteria: string[]) => {
     const cartItem = await CartItem.findOne({ where: { ...searchOneCriteria } });
     return cartItem;
   } catch (error) {
-    throw new Error('cant find cartItem ');
+    throw ApiError.from(error);
   }
 };
 
@@ -36,7 +37,7 @@ export const save = async (cartItem: any) => {
     const storedCartItem = await CartItem.create(cartItem);
     return storedCartItem;
   } catch (error) {
-    throw new Error('cant save cartItem ');
+    throw ApiError.from(error);
   }
 };
 
@@ -48,7 +49,7 @@ export const update = async (cartItem: any) => {
     });
     return storedCartItem;
   } catch (error) {
-    throw new Error('cant update cartItem ');
+    throw ApiError.from(error);
   }
 };
 
@@ -61,7 +62,7 @@ export const deleteCartItem = async (id: number) => {
     });
     return storedCartItem;
   } catch (error) {
-    throw new Error('cant delete cartItem ');
+    throw ApiError.from(error);
   }
 };
 
