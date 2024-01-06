@@ -4,11 +4,15 @@ Welcome to the Online shopping App! This application is a simple online bookstor
 
 ## Table of Contents
 
-- [ Online Shopping App ](#online-shopping-app)
+- [Online Shopping App](#online-shopping-app)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
     - [Installation](#installation)
+  - [Installation](#installation-1)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Prerequisites
 

@@ -65,7 +65,7 @@ export const save = async ( user : IUser) => {
   }
 };
 
-export const update = async (user: IUser) => {
+export const update = async (user: any) => {
   try {
     const storedUser = await User.update(user, { where: { id: user.id } });
     return storedUser;

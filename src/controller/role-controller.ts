@@ -17,14 +17,14 @@ export const getAll = async (req: Request, res: Response) => {
 
 export const getById = async (req: Request, res: Response) => {
   try {
-    const user = await roleService.getById(req.params.id);
+    const id = parseInt(req.params.id);
+
+    const user = await roleService.getById(id);
     res.status(StatusCode.OK).json(user);
   } catch (error) {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
   }
 };
-
-
 
 export const save = async (req: Request, res: Response) => {
   try {
