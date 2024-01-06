@@ -1,6 +1,7 @@
 import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
 
+import { IUser } from '../interfaces/user'; // Import the IUser interface
 
 const Role = tables.role;
 const User = tables.user;
@@ -14,7 +15,7 @@ export const getAll = async () => {
   }
 };
 
-export const getById = async (id: any) => {
+export const getById = async (id: number) => {
   try {
     const user = await User.findByPk(id);
     return user;
@@ -23,7 +24,7 @@ export const getById = async (id: any) => {
   }
 };
 
-export const getByEmail = async (email: any) => {
+export const getByEmail = async (email: string) => {
   try {
     const user = await User.findOne({ where: { email: email } });
     return user;
@@ -32,7 +33,7 @@ export const getByEmail = async (email: any) => {
   }
 };
 
-export const searchAll = async (searchAllCriteria: any) => {
+export const searchAll = async (searchAllCriteria: string[]) => {
   try {
     const users = await User.findAll({ where: { ...searchAllCriteria } });
     return users;
@@ -41,7 +42,7 @@ export const searchAll = async (searchAllCriteria: any) => {
   }
 };
 
-export const getRole = async (id: any) => {
+export const getRole = async (id: number) => {
   try {
     const user = await User.findByPk(id, { include: [Role], raw: false });
      if (!user) {
@@ -54,7 +55,7 @@ export const getRole = async (id: any) => {
   }
 };
 
-export const save = async ( user : any) => {
+export const save = async ( user : IUser) => {
   try {
     const storedUser = await User.create(user);
     return storedUser;
@@ -64,7 +65,7 @@ export const save = async ( user : any) => {
   }
 };
 
-export const update = async (user: any) => {
+export const update = async (user: IUser) => {
   try {
     const storedUser = await User.update(user, { where: { id: user.id } });
     return storedUser;
@@ -73,7 +74,7 @@ export const update = async (user: any) => {
   }
 };
 
-export const remove = async (id: any) => {
+export const remove = async (id: number) => {
   try {
     const storedUser = await User.destroy({ where: { id: id } });
     return storedUser;

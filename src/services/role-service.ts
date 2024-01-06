@@ -12,7 +12,7 @@ export const getAll = async () => {
   }
 };
 
-export const searchOne = async (searchAllCriteria: any) => {
+export const searchOne = async (searchAllCriteria:any ) => {
   try {
     const roles = await Role.findOne({ where: { ...searchAllCriteria } });
     return roles;
@@ -21,7 +21,7 @@ export const searchOne = async (searchAllCriteria: any) => {
   }
 };
 
-export const getById = async (id: any) => {
+export const getById = async (id: number) => {
   try {
     const role = await Role.findByPk(id);
     return role;
@@ -29,24 +29,7 @@ export const getById = async (id: any) => {
     throw ApiError.from(error);
   }
 };
-// //getUsers
-// export const getUsers = async (name: any) => {
-//   try {
-//     const role = await Role.findOne({
-//       where: { name: name },
-//       include: [User],
-//       raw: false,
-//     });
-//     if (!role) {
-//       return [];
-//     }
 
-//     const users = role.users;
-//     return users;
-//   } catch (error) {
-//     throw ApiError.from(error);
-//   }
-// };
 
 export const save = async (role: any) => {
   try {

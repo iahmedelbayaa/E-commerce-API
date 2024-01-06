@@ -5,10 +5,11 @@ import { Roles } from '../util/roles';
 import bcrypt from 'bcrypt';
 import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
+import { IUser } from '../interfaces/user'; // Import the IUser interface
 
 const User = tables.user;
 
-export const signup = async (user: any) => {
+export const signup = async (user: IUser) => {
   try {
     const { email, password, roleName } = user;
     const storedUser = await userService.getByEmail(email);
@@ -18,15 +19,15 @@ export const signup = async (user: any) => {
         'This email is already taken, choose another one'
       );
     }
-  if (!storedRole) {
-    const availableRoles = ['admin', 'seller', 'customer'];
-    if (!availableRoles.includes(roleName)) {
-      throw ApiError.badRequest(
-        'Invalid role. Choose from [admin, seller, customer]'
-      );
+    if (!storedRole) {
+      const availableRoles = ['admin', 'seller', 'customer'];
+      if (!availableRoles.includes(roleName)) {
+        throw ApiError.badRequest(
+          'Invalid role. Choose from [admin, seller, customer]'
+        );
+      }
+      throw ApiError.badRequest('This role does not exist');
     }
-    throw ApiError.badRequest('This role does not exist');
-  }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;
@@ -37,6 +38,7 @@ export const signup = async (user: any) => {
     if (roleName === Roles.CUSTOMER) {
       await cartService.save(savedUser);
     }
+
   } catch (error) {
     throw ApiError.from(error);
   }
