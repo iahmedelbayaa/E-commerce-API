@@ -1,4 +1,4 @@
-Creating a README for an online shopping application using Node.js involves providing essential information about the project, its features, how to set it up, and other relevant details. Below is a sample README that you can customize for your Node.js online shopping project:
+
 
 ```markdown
 # Online Shopping App with Node.js
