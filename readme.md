@@ -1,6 +1,3 @@
-
-
-```markdown
 # Online Shopping App with Node.js
 
 An online shopping application built with Node.js, Express, PostgreSQL, and other technologies.
