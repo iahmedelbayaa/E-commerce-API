@@ -3,11 +3,10 @@ import * as roleService from '../services/role-service';
 import * as cartService from '../services/cart-service';
 import { Roles } from '../util/roles';
 import bcrypt from 'bcrypt';
-import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
-import { IUser } from '../interfaces/user'; // Import the IUser interface
+import { IUser } from '../interfaces/user.interface';
 
-const User = tables.user;
+
 
 export const signup = async (user: IUser) => {
   try {
@@ -33,7 +32,7 @@ export const signup = async (user: IUser) => {
     user.password = hashedPassword;
     user.roleId = storedRole.id;
 
-    const savedUser = await User.create(user);
+    const savedUser = await userService.save(user);
 
     if (roleName === Roles.CUSTOMER) {
       await cartService.save(savedUser);

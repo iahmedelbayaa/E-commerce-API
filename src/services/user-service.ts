@@ -1,7 +1,7 @@
 import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
 
-import { IUser, default as ISignupResponse } from '../interfaces/user'; // Import the IUser interface
+import { IUser, default as ISignupResponse } from '../interfaces/user.interface'; // Import the IUser interface
 
 const Role = tables.role;
 const User = tables.user;
