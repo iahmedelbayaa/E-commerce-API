@@ -64,7 +64,7 @@ export const update = async (req: Request, res: Response) => {
   try {
     const id = parseInt(req.params.id);
 
-    const user = await userService.update(id);
+    const user = await userService.update({id, ...req.body});
     res.status(StatusCode.OK).json({ message: 'Updating successfully' });
   } catch (error) {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
