@@ -55,6 +55,7 @@ export const getRole = async (id: number) => {
   }
 };
 
+
 export const save = async ( user : IUser) => {
   try {
     const storedUser = await User.create(user);
@@ -64,8 +65,8 @@ export const save = async ( user : IUser) => {
     throw ApiError.from(error);
   }
 };
-
-export const update = async (user: any) => {
+// we use the IUser interface to define the user parameter
+export const update = async (user: IUser) => {
   try {
     const storedUser = await User.update(user, { where: { id: user.id } });
     return storedUser;
