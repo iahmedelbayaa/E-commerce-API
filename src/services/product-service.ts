@@ -1,6 +1,7 @@
 import { tables } from '../util/tables';
 import * as categoryService from './category-service';
 import ApiError from '../util/api-error';
+import { IProduct } from '../interfaces/product.interface';
 
 const Product = tables.product;
 const Category = tables.category;
@@ -59,15 +60,15 @@ export const searchAll = async (searchAllCriteria: string[]) => {
 };
 
 //save
-export const save = async (product: any) => {
+export const save = async (product: IProduct) => {
   try {
     const category = await categoryService.searchAll({
-      name: product.categoryName,
+      name: product.name,
     });
     if (!category) {
       throw new Error('category not found');
     }
-    product.categoryId = category;
+    product.id = category[0].id; // Assign the id property of the first category in the array
     const storedProduct = await Product.create(product);
     return storedProduct;
   } catch (error) {
@@ -76,7 +77,7 @@ export const save = async (product: any) => {
 };
 
 //update
-export const update = async (id: number, product: any) => {
+export const update = async (id: number, product: IProduct) => {
   try {
     const storedProduct = await Product.update(product, { where: { id: id } });
     return storedProduct;

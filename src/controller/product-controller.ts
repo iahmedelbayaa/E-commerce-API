@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import {StatusCode} from '../util/status-code';
-import ApiError from '../util/api-error';
 import * as productService from '../services/product-service';
 
 export const getAll = (req: Request, res: Response, next: NextFunction) => {
