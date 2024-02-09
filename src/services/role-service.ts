@@ -1,5 +1,6 @@
 import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
+import { IRole } from '../interfaces/role.interface';
 
 const Role = tables.role;
 
@@ -12,7 +13,7 @@ export const getAll = async () => {
   }
 };
 
-export const searchOne = async (searchAllCriteria:any ) => {
+export const searchOne = async (searchAllCriteria: Partial<IRole>) => {
   try {
     const roles = await Role.findOne({ where: { ...searchAllCriteria } });
     return roles;
