@@ -1,5 +1,6 @@
 import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
+import { IOrder } from '../interfaces/order.interface';
 
 const Order = tables.order;
 const User = tables.user;
@@ -70,9 +71,9 @@ export const getOrderInfo = async (id: number) => {
 };
 
 //save
-export const save = async (order: any) => {
+export const save = async (order: IOrder) => {
   try {
-    const storedOrder = await Order.create(order);
+    const storedOrder = await Order.create({order});
     return storedOrder;
   } catch (error) {
     throw ApiError.from(error);
