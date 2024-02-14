@@ -1,5 +1,6 @@
 import { tables } from '../util/tables';
 import ApiError from '../util/api-error';
+import { IProduct } from '../interfaces/product.interface';
 
 const Product = tables.product;
 const Category = tables.category;
@@ -13,7 +14,7 @@ export const getAll = async () => {
   }
 };
 
-export const getById = async (id: any) => {
+export const getById = async (id: number) => {
   try {
     const product = await Product.findByPk(id);
     return product;
@@ -23,7 +24,7 @@ export const getById = async (id: any) => {
 };
 
 //get product
-export const getProducts = async (id: any) => {
+export const getProducts = async (id: number) => {
   try {
     const category = await Category.findByPk(id, { include: [Product], raw: false });
     if (!category) {
@@ -36,7 +37,7 @@ export const getProducts = async (id: any) => {
   }
 }
 //searchAll
-export const searchAll = async (searchAllCriteria: any) => {
+export const searchAll = async (searchAllCriteria: string[]) => {
   try {
     const products = await Product.findAll({ where: { ...searchAllCriteria } });
     return products;
@@ -46,7 +47,7 @@ export const searchAll = async (searchAllCriteria: any) => {
 };
 
 //searchOne
-export const searchOne = async (searchOneCriteria: any) => {
+export const searchOne = async (searchOneCriteria: string[]) => {
   try {
     const product = await Product.findOne({ where: { ...searchOneCriteria } });
     return product;
@@ -57,7 +58,7 @@ export const searchOne = async (searchOneCriteria: any) => {
 
 
 //save
-export const save = async (product: any) => {
+export const save = async (product: IProduct) => {
   try {
     const storedProduct = await Product.create(product);
     return storedProduct;
@@ -67,7 +68,7 @@ export const save = async (product: any) => {
 };
 
 //update
-export const update = async (product: any) => {
+export const update = async (product: IProduct) => {
   try {
     const storedProduct = await Product.update(product, { where: { id: product.id } });
     return storedProduct;
@@ -78,7 +79,7 @@ export const update = async (product: any) => {
 
 //delete
 
-export const deleteProduct = async (id: any) => {
+export const deleteProduct = async (id: number) => {
   try {
     const storedProduct = await Product.destroy({ where: { id: id } });
     return storedProduct;
