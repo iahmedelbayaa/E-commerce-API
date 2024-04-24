@@ -53,7 +53,7 @@ An online shopping application built with Node.js, Express, PostgreSQL, and othe
 - `public/`: Static assets (images, stylesheets, scripts).
 - `views/`: EJS templates for rendering views.
 - `routes/`: Route handlers.
-- `models/`: MongoDB models.
+- `models/`: Postgresql models.
 - `controllers/`: Application logic.
 - `middlewares/`: Custom middleware functions.
 - `config/`: Configuration files.
