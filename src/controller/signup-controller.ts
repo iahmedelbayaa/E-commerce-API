@@ -8,7 +8,7 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
   try {
     await signupService.signup(user);
     res.status(StatusCode.CREATED).json({ message: 'User Sign Up' });
-  } catch (error) {
+  } catch (error: any) {
     res.status(StatusCode.BAD_REQUEST).json(error.message);
   }
 };
