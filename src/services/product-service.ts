@@ -62,16 +62,10 @@ export const searchAll = async (searchAllCriteria: string[]) => {
 //save
 export const save = async (product: IProduct) => {
   try {
-    const category = await categoryService.searchAll({
-      name: product.name,
-    });
-    if (!category) {
-      throw new Error('category not found');
-    }
-    product.id = category[0].id; // Assign the id property of the first category in the array
     const storedProduct = await Product.create(product);
     return storedProduct;
-  } catch (error) {
+  }
+  catch (error) {
     throw ApiError.from(error);
   }
 };
