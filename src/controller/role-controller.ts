@@ -10,7 +10,7 @@ export const getAll = async (req: Request, res: Response) => {
   try {
     const users = await roleService.getAll();
     res.status(StatusCode.OK).json(users);
-  } catch (error) {
+  } catch (error: any) {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
   }
 };
@@ -21,7 +21,7 @@ export const getById = async (req: Request, res: Response) => {
 
     const user = await roleService.getById(id);
     res.status(StatusCode.OK).json(user);
-  } catch (error) {
+  } catch (error: any) {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
   }
 };
@@ -30,7 +30,7 @@ export const save = async (req: Request, res: Response) => {
   try {
     const user = await Role.create(req.body);
     res.status(StatusCode.CREATED).json(user);
-  } catch (error) {
+  } catch (error: any) {
     res.status(StatusCode.BAD_REQUEST).json({ message: error.message });
   }
 };
